@@ -1,0 +1,517 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Cody's Contact Webpage</title>
+
+<link href="assets/css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+ <link rel="stylesheet" href="assets/css/owl.carousel.css">
+ <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+ <link rel="stylesheet" href="assets/css/templatemo-style.css">
+	
+
+     
+
+</head>
+<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+
+    
+
+
+     <!-- MENU -->
+     <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+          <div class="container">
+
+               <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                    </button>
+
+                    <!-- lOGO TEXT HERE -->
+                    <a href="#" class="navbar-brand">Cody's Website</a>
+               </div>
+
+               <!-- MENU LINKS -->
+               <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-nav-first">
+                         <li><a href="index.html" class="smoothScroll">Home</a></li>
+                         <li><a href="work.html" class="smoothScroll">Work</a></li>
+                         <li><a href="school.html" class="smoothScroll">School</a></li>
+                         <li><a href="hobbies.html" class="smoothScroll">Hobbies</a></li>
+                         <li><a href="contact.php" class="smoothScroll">Contact</a></li>
+                    </ul>
+
+                    
+               </div>
+
+          </div>
+     </section>
+
+<!--home-->
+  
+     <section id = "home" >
+		<?php
+			session_start();
+		 $pattern =  '/^[a-zA-Z\'-]{2,}$/';
+		 $patterne =  '/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/';
+		 
+		 $patternP = '/^[0-9]{10}$/';
+		 
+
+			if(!isset($_POST['submit']))
+			{
+		 		echo '<form method = "post" action = "" id = "mainForm" style = "padding:20px;margin=20px">';
+		 		if(isset($_GET['errMsg']) && (strstr($_GET['errMsg'],"firstNameNull")|| !preg_match($pattern, $_GET['firstname'])))
+				{
+				
+				
+		 			echo ' <div id = "firstNameDiv" class = "form-group has-error">
+					';
+					echo ' <label class = "control-label" for="firstname">First Name: </label>';    
+					echo ' <input type="text" class = "form-control" id="firstname" name = "firstname"/>';
+					echo '<div id="fNamefeedback" >First Name cannot be blank.</div>';
+					echo '	<span id="fNameStatus" class="glyphicon form-control-feedback" aria-hidden="true"></span>';
+					echo '</div>';
+				}
+			else	
+			{
+				//talk to Professor Valadez about the regex testing.
+				
+				if(isset($_SESSION['firstname']) && $_SESSION['firstname'] !='' || preg_match($pattern, $_GET['firstname']))
+				{
+				   echo ' <div id = "firstNameDiv" class = "form-group has-feedback has-success">';
+					echo' <label class = "control-label" for="firstname">First Name: </label>';
+					echo ' <input type="text" class = "form-control" id="firstname" name = "firstname" value = "'.$_SESSION['firstname'].'"/>';
+					echo '<div id="fNamefeedback" ></div>';
+					echo '<span id="fNameStatus" class="glyphicon form-control-feedback" aria-hidden="true"></span>';
+					echo '</div>';
+				}
+				else
+				{
+					echo ' <div id = "firstNameDiv" class = "form-group">';
+					echo' <label class = "control-label" for="firstname">First Name: </label>';
+					echo ' <input type="text" class = "form-control" id="firstname" name = "firstname"/>';
+					echo '<div id="fNamefeedback" ></div>';
+					echo '</div>';
+					
+				   
+				}
+			}
+		 	
+		 
+		  
+		
+			if(isset($_GET['errMsg']) && (strstr($_GET['errMsg'],"lastName")|| !preg_match($pattern, $_GET['lastname'])))
+				{
+					echo '<div class = "form-group has-feedback has-error has-error">';
+					echo '<label class = "control-label" for="lastname">Last Name: </label>';
+					echo '<input type="text" class = "form-control" id="lastname" name = "lastname"  /> ';
+					echo '<div id="lNamefeedback" >Last name cannot be blank!</div>';
+					echo '<span id="lNameStatus" class="glyphicon form-control-feedback" aria-hidden="true"></span>';
+					echo '</div>';
+				}
+				
+				else
+				{
+					if(isset($_SESSION['lastname']) && $_SESSION['lastname'] !='')
+					{
+					echo '<div class = "form-group has-feedback  has-success ">';
+					echo '<label class = "control-label" for="lastname">Last Name: </label>';
+					echo '<input type="text" class = "form-control" id="lastname" name = "lastname" value = "'.$_SESSION['lastname'].'" /> ';
+					echo '<div id="lNamefeedback" ></div>';
+					echo '<span id="lNameStatus" class="glyphicon form-control-feedback" aria-hidden="true"></span>';
+					echo '</div>';
+						
+					}
+					
+					else{
+
+					echo '<div class = "form-group has-feedback ">';
+					echo '<label class = "control-label" for="lastname">Last Name: </label>';
+					echo '<input type="text" class = "form-control" id="lastname" name = "lastname" /> ';
+					echo '<div id="lNamefeedback" ></div>';
+					echo '<span id="lNameStatus" class="glyphicon form-control-feedback" aria-hidden="true"></span>';
+					echo '</div>';
+					}
+					
+				}
+			
+			   
+		       
+		    
+			if(isset($_GET['errMsg']) && (strstr($_GET['errMsg'],"email")|| !preg_match($patterne, $_GET['email'])))
+			{
+				echo ' <div class = "form-group has-feedback has-error">   ';
+				echo ' <label class = "control-label" for="email">Email: </label>';        
+				echo ' <input type="text" class = "form-control" id="email" name = "email" />   ';  
+				echo ' <div id="emailfeedback" >Email cannot be blank.</div>';
+				echo '	<span id="emailStatus" class="glyphicon form-control-feedback" aria-hidden="true"></span>';
+				echo '</div>';
+			
+			}
+		
+			else
+			{
+				
+				if(isset($_SESSION['email']) && $_SESSION['email'] !='' )
+					{
+		 
+		  		echo ' <div class = "form-group has-feedback has-success">   ';
+				echo ' <label class = "control-label" for="email">Email: </label>';        
+				echo ' <input type="text" class = "form-control" id="email" name = "email" value = "'.$_SESSION['email'].'" />   ';  
+				echo ' <div id="emailfeedback" ></div>';
+				echo '	<span id="emailStatus" class="glyphicon form-control-feedback" aria-hidden="true"></span>';
+				echo '</div>';
+				}
+				else
+				{
+					echo ' <div class = "form-group has-feedback">   ';
+				echo ' <label class = "control-label" for="email">Email: </label>';        
+				echo ' <input type="text" class = "form-control" id="email" name = "email" />   ';  
+				echo ' <div id="emailfeedback" ></div>';
+				echo '	<span id="emailStatus" class="glyphicon form-control-feedback" aria-hidden="true"></span>';
+				echo '</div>';
+				}
+			}
+		 
+			 
+			if(isset($_GET['errMsg']) && (strstr($_GET['errMsg'],"phone")|| !preg_match($patternP, $_GET['phone'])))
+			{
+			echo ' <div class = "form-group has-feedback has-error">   ';
+			echo '<label class = "control-label" for="phone">Phone number:  </label> ';   
+			echo '<input type="text" class = "form-control" id="phone" name = "phone" /> ';     
+			echo '<div id="phonefeedback" >Phone number cannot be blank</div>';
+			echo '<span id="phoneStatus" class="glyphicon form-control-feedback" aria-hidden="true"></span>';
+			echo '</div>';	
+			}
+			else
+			{
+				if(isset($_SESSION['phone']) && $_SESSION['phone'] !='' )
+				{
+					echo ' <div class = "form-group has-feedback has-success">   ';
+				echo '<label class = "control-label" for="phone"> Phone number:  </label>     ';   
+				echo ' <input type="text" class = "form-control" id="phone" name = "phone" value = "'.$_SESSION['phone'].'" />   ';    
+				echo '<div id="phonefeedback" ></div>';
+				echo '<span id="phoneStatus" class="glyphicon form-control-feedback" aria-hidden="true"></span>';
+				echo '</div>';	
+				
+			}
+			
+			else
+			{
+				echo ' <div class = "form-group has-feedback">   ';
+			echo '<label class = "control-label" for="phone">Phone number: </label>     ';   
+			echo '<input type="text" class = "form-control" id="phone" name = "phone" /> ';     
+			echo '<div id="phonefeedback" ></div>';
+			echo '<span id="phoneStatus" class="glyphicon form-control-feedback" aria-hidden="true"></span>';
+			echo '</div>';	
+				
+			}
+
+				
+			}
+
+		 	
+		 
+		 	if(isset($_GET['errMsg']) && strstr($_GET['errMsg'],"usernameNull"))
+			{
+			echo '<div class = "form-group has-feedback has-error">   ';
+			echo '<label class = "control-label" for="username">Create a username: </label> ';   
+			echo '<input type="text" class = "form-control" id="username" name = "username"  /> ';       
+			echo '<div id="usernamefeedback" >Username cannot be blank</div>';
+			echo '<span id="userStatus" class="glyphicon form-control-feedback" aria-hidden="true"></span>';
+			echo '</div>';
+			}
+			else
+			{
+				if(isset($_SESSION['username']) && $_SESSION['username'] !='' )
+				{
+				echo '<div class = "form-group has-feedback has-success">   ';
+				echo '<label class = "control-label" for="username">Create a username: </label> ';   
+				echo ' <input type="text" class = "form-control" id="username" name = "username" value = "'.$_SESSION['username'].'" />   ';    
+				echo '<div id="usernamefeedback" ></div>';
+				echo '<span id="userStatus" class="glyphicon form-control-feedback" aria-	hidden="true"></span>';
+				echo '</div>';	
+				
+			}
+			else
+			{
+				echo '<div class = "form-group has-feedback">   ';
+				echo '<label class = "control-label" for="username">Create a username: </label> ';   
+				echo '<input type="text" class = "form-control" id="username" name = "username" /> ';       
+				echo '<div id="usernamefeedback" ></div>';
+				echo '<span id="userStatus" class="glyphicon form-control-feedback" aria-	hidden="true"></span>';
+				echo '</div>';	
+			}
+
+			
+			}
+
+		 	
+	
+			if(isset($_GET['errMsg']) && strstr($_GET['errMsg'],"passwordNull"))
+			{
+			echo '<div class = "form-group has-feedback has-error">';
+			echo '<label class = "control-label" for="password">Create a password: </label> ';  
+			echo '<input type="password" class = "form-control" id="password" name = "password" /> ';
+			echo ' <div id="passwordfeedback">Password cannot be blank</div>';
+			echo '<span id="passStatus" class="glyphicon form-control-feedback" aria-hidden="true"></span>';
+			echo '</div>';
+			}
+			else
+			{
+			if(isset($_SESSION['password']) && $_SESSION['password'] !='' )
+				{
+			echo '<div class = "form-group has-feedback has-success">';
+			echo '<label class = "control-label" for="password">Create a password: </label> ';  
+			echo '<input type="password" class = "form-control" id="password" name = "password" value = "'.$_SESSION['password'].'" /> ';
+			echo ' <div id="passwordfeedback"></div>';
+			echo '<span id="passStatus" class="glyphicon form-control-feedback" aria-hidden="true"></span>';
+			echo '</div>';	
+			}
+			else
+			{
+		
+				echo '<div class = "form-group has-feedback">';
+				echo '<label class = "control-label" for="password">Create a password: </label> ';  
+				echo '<input type="password" class = "form-control" id="password" name = "password" /> ';
+				echo ' <div id="passwordfeedback"></div>';
+				echo '<span id="passStatus" class="glyphicon form-control-feedback" aria-hidden="true"></span>';
+				echo '</div>';
+			}
+
+				
+			}
+	
+			
+		 
+		 	if(isset($_GET['errMsg']) && strstr($_GET['errMsg'],"commentsNull"))
+			{
+			echo '<div class = "form-group has-feedback">  '; 
+			echo '<label class = "control-label" for="comments"> Comments: </label> ';   
+			echo ' <textarea id = "comments" class = "form-control" name = "comments" ></textarea>';
+			echo '<div id="Commentsfeedback" ></div>';
+		 	echo '	<span id="commentsStatus" class="glyphicon form-control-feedback" aria-hidden="true"></span>';
+			echo '</div>';		
+			}
+			else
+			{
+			echo '<div class = "form-group has-feedback has-success">  '; 
+			echo '<label class = "control-label" for="comments">Comments: </label> ';   
+			echo ' <textarea id = "comments" class = "form-control" name = "comments">'. ($_SESSION['comments']) . '</textarea>';
+			echo '<div id="Commentsfeedback" ></div>';
+		 	echo '	<span id="commentsStatus" class="glyphicon form-control-feedback" aria-hidden="true"></span>';
+			echo '</div>';	
+			}
+	 	
+	
+				
+			echo '<div class = "form-group">';
+			echo '<button class = "btn btn-primary" type="submit"  value="submit" name = "submit" />Submit</button>';
+			echo '</div>';
+    
+
+			
+	
+			echo '</form>';
+			 
+		 
+			}
+			
+		 	
+			else
+			{
+			$errors = "";
+			$_SESSION = array();
+			$firstName = $_POST['firstname'];
+				
+			if($firstName == NULL )
+			{
+			$errors = "firstNameNull";
+			}
+			else
+			{
+				$_SESSION['firstname'] = $firstName;
+			}
+				
+			$lastName = $_POST['lastname'];
+				
+			if($lastName == NULL)
+			{
+			
+				$errors .= "lastNameNull";
+				
+			}
+				
+			else
+			{
+				$_SESSION['lastname'] = $lastName;
+			}
+				
+			$email = $_POST['email'];
+			if($email == NULL)
+			{
+			
+				$errors .= "emailNull";
+				
+			}
+			else
+			{
+				$_SESSION['email'] = $email;
+			}
+			$phone = $_POST['phone'];
+			if($phone == NULL)
+			{
+			
+				$errors .= "phoneNull";
+				
+			}
+			else
+			{
+				$_SESSION['phone'] = $phone;
+			}
+			
+			$username = $_POST['username'];
+				
+			if($username == NULL)
+			{
+			
+				$errors .= "usernameNull";
+				
+			}
+			else
+			{
+				$_SESSION['username'] = $username;
+			}
+			$password = $_POST['password'];
+			
+			if($password == NULL)
+			{
+			
+				$errors .= "passwordNull";
+				
+			}
+			else
+			{
+				$_SESSION['password'] = $password;
+			}
+			$comments = $_POST['comments'];
+			
+			if($comments == NULL)
+			{
+			
+				$errors .= "commentsNull";
+				
+			}
+			else
+			{
+				$_SESSION['comments'] = $comments;
+			}
+			
+			if ($errors != NULL)
+			{
+				
+				header("Location: contact.php?errMsg=$errors");
+			}
+			
+
+				
+				
+			echo "<h2>Hello from Results</h2>";
+			echo '<p>First Name: '.$_POST['firstname'].'</p>';
+			echo '<p>Last Name: '.$_POST['lastname'].'</p>';
+			echo '<p>Email: '.$_POST['email'].'</p>';
+			echo '<p>Phone Number '.$_POST['phone'].'</p>';
+			echo '<p>Username: '.$_POST['username'].'</p>';
+			echo '<p>Password: '.$_POST['password'].'</p>';
+			echo '<p>Comments: '.$_POST['comments'].'</p>';
+			}
+		 
+
+			
+			
+		?>
+		 
+	</section>
+    
+
+
+     <!-- FOOTER -->
+     <footer id="footer">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-4 col-sm-6">
+                         <div class="footer-info">
+                              <div class="section-title">
+                                   <h2>Headquarter</h2>
+                              </div>
+                              <address>
+                                   <p>1800 dapibus a tortor pretium,<br> Integer nisl dui, ABC 12000</p>
+                              </address>
+
+                              <ul class="social-icon">
+                                   <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                                   <li><a href="#" class="fa fa-twitter"></a></li>
+                                   <li><a href="#" class="fa fa-instagram"></a></li>
+                              </ul>
+
+                              <div class="copyright-text"> 
+                                   <p>Copyright &copy; 2018 Company</p>
+                                   <p>Design: <a rel="nofollow" href="http://templatemo.com" title="html5 templates" target="_parent">Template Mo</a></p>
+                                   <p>Distribution: <a href="https://themewagon.com/">ThemeWagon</a></p>
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                         <div class="footer-info">
+                              <div class="section-title">
+                                   <h2>Contact Info</h2>
+
+                              </div>
+                              <address>
+                                   <p>+65 2244 1100, +66 1800 1100</p>
+                                   <p><a href="mailto:youremail.com">hello@youremail.co</a></p>
+                              </address>
+
+                              <div class="footer_menu">
+                                   <h2>Quick Links</h2>
+                                   <ul>
+                                        <li><a href="#">Career</a></li>
+                                        <li><a href="#">Investor</a></li>
+                                        <li><a href="#">Terms & Conditions</a></li>
+                                        <li><a href="#">Refund Policy</a></li>
+                                   </ul>
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12">
+                         <div class="footer-info newsletter-form">
+                              <div class="section-title">
+                                   <h2>Newsletter Signup</h2>
+                              </div>
+                              <div>
+                                   <div class="form-group">
+                                        <form action="#" method="get">
+                                             <input type="email" class="form-control" placeholder="Enter your email" name="email" id="email" required="">
+                                             <input type="submit" class="form-control" name="submit" id="form-submit" value="Send me">
+                                        </form>
+                                        <span><sup>*</sup> Please note - we do not spam your email.</span>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+                    
+               </div>
+          </div>
+     </footer>
+
+
+</body>
+	<script src="assets/js/event-listener.js"></script>  
+</html>
