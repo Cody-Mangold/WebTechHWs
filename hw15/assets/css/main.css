@@ -1,0 +1,142 @@
+/* CSS Document */
+
+.body-class {
+  background-color: #E020A9 !important;
+}
+
+.banner-main {
+  background-color: #837C7C !important;
+  color: #FFFFFF;
+  padding: 10px;
+}
+.banner-main2 {
+  background-color: #837C7C !important;
+  color: #FFFFFF;
+  padding: 10px;
+	text-align: center;
+}
+
+.title-class {
+  text-align: center;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+a:hover {
+  color: #000000;
+}
+
+.button-selected {
+  background-color: #ff0000;
+}
+
+.menu-color {
+  background-color: #5b9bd5;
+  text-align: center;
+  padding: 10px 0;
+  list-style: none;
+  margin: 0;
+  
+}
+
+.menu-color li {
+  display: inline-block;
+}
+
+.table-Main {
+  border: 0;
+  width: 100%;
+}
+
+.table-entry {
+  text-align: center;
+  background-color: #5b9bd5;
+}
+
+a.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #5B9BD5;
+  color: #FFFFFF;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+a.button:hover {
+  background-color: #3a7ab0;
+}
+
+a.red-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #FF0000;
+  color: #FFFFFF;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+a.red-button:hover {
+  background-color: #CC0000;
+}
+.rounded-img {
+  display: block;
+  margin: 0 auto;
+  border-radius: 50%; 
+width: 600px;
+	height : 400px;
+}
+
+.square-img {
+  display: block;
+  margin: 0 auto;
+	width: 600px;
+	height : 400px;
+  
+}
+.basic-box {
+  text-align: left; 
+  padding: 20px; 
+}
+.basic-box2 {
+  text-align: center; 
+  padding: 20px; 
+}
+
+.school-info {
+  display: inline-block; 
+  vertical-align: top; 
+  margin-right: 400px; 
+}
+.content {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.course-list {
+  display: inline-block; 
+  vertical-align: middle;
+	margin-right: 400px; 
+}
+
+
+.hobbies-info {
+  margin-bottom: 20px; 
+}
+
+.hobbies-list ul ul {
+  margin-top: 10px;
+}
+.favorite-movies,
+.favorite-shows {
+  text-align: left; 
+  margin-top: 20px; 
+}
+
+.favorite-movies ol,
+.favorite-shows ul {
+  margin-top: 10px; 
+}
